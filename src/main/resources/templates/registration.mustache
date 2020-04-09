@@ -5,6 +5,11 @@
 </head>
 <body>
 Add new user
+<br>
+{{#message}}
+    {{message}}
+{{/message}}
+<br>
 <form action="/registration" method="post">
     <div><label> User Name: <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
