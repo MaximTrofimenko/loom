@@ -34,6 +34,9 @@ public class GreetingController {
         Message message = new Message(text, tag);
         messageRepository.save(message);
 
+        Iterable<Message> messages = messageRepository.findAll();
+        model.addAttribute("messages", messages);
+
         return "main";
     }
 
