@@ -1,5 +1,6 @@
 package com.trofimenko.loom.domain;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,9 @@ public class Message {
     private String text;
 
     private String tag;
+
+    public Message() {
+    }
 
     public Integer getId() {
         return id;
