@@ -1,4 +1,4 @@
-package com.trofimenko.loom;
+package com.trofimenko.loom.controller;
 
 import com.trofimenko.loom.domain.Message;
 import com.trofimenko.loom.repository.MessageRepository;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepository messageRepository;
 
