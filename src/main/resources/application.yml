@@ -13,5 +13,5 @@ spring:
      ddl-auto: none
     generate-ddl: true
 
-  mustache:
+  freemarker:
     expose-request-attributes: true
