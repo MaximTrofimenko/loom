@@ -32,12 +32,12 @@ public class Message {
         return author != null ? author.getUsername() : "<none>";
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public User getAuthor() {
+        return author;
     }
 
     public Integer getId() {
