@@ -58,7 +58,7 @@ public class MainController {
         /*
         загрузка файла
          */
-        if(file != null){                           //проверка на пустоту файла и наличее дирректории
+        if(file != null && !file.getOriginalFilename().isEmpty()){                           //проверка на пустоту файла и наличее дирректории
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()){
                 uploadDir.mkdir();
@@ -66,7 +66,10 @@ public class MainController {
 
             String uuidFile = UUID.randomUUID().toString();                      //генерируем случайный uuid
             String resultFilename = uuidFile + "." + file.getOriginalFilename(); //создаем название файла
-            file.transferTo(new File(resultFilename));                           //загружаем файл
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));                           //загружаем файл
+
+            message.setFilename(resultFilename);
         }
 
         messageRepository.save(message);
