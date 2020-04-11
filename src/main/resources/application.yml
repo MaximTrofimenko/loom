@@ -16,5 +16,17 @@ spring:
   freemarker:
     expose-request-attributes: true
 
+  mail:
+   host: smtp.yandex.ru
+   username: trofimenkomg@yandex.ru
+   password: Exeption
+   port: 465
+   protocol: smtps
+
+mail:
+  debug: true
+
 upload:
   path: "D:\\4"
+
+
