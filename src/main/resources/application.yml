@@ -15,3 +15,6 @@ spring:
 
   freemarker:
     expose-request-attributes: true
+
+upload:
+  path: "D:\\4"
