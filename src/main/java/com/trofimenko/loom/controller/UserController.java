@@ -2,32 +2,31 @@ package com.trofimenko.loom.controller;
 
 import com.trofimenko.loom.domain.Role;
 import com.trofimenko.loom.domain.User;
-import com.trofimenko.loom.repository.UserRepository;
+import com.trofimenko.loom.servise.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model){
-        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("users",userService.findAll());
         return "userList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(
             @PathVariable User user, //тут мы получаем сразу user по его id
@@ -37,33 +36,34 @@ public class UserController {
         model.addAttribute("roles", Role.values());
         return "userEdit";
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(
             @RequestParam String username,         //получаем username из формы
             @RequestParam Map<String,String> form, //получаем список ролей, их может быть разное количество, поэтому Map
             @RequestParam("userId") User user      //получем сразу user по его id который дергается из form
     ){
-        user.setUsername(username);
-
-        Set<String> roles = Arrays.stream(Role.values())  //переводим enum в set ролей
-                .map(Role::name)
-                .collect(Collectors.toSet());
-
-        user.getRoles().clear();
-
-        /*
-        добавляем роли пользователю, тоесть сравниваем списов ВСЕХ ролей и ролей которые
-        заполнил пользователь через форму
-        Если роль из формы соответствует роли в базовом списке то добавляем эту роль юзеру
-         */
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-
-        userRepository.save(user);
+        userService.saveUser(user,username,form);
         return "redirect:/user";
+    }
+
+    @GetMapping("/profile")
+    public String getProfile(Model model, @AuthenticationPrincipal User user){ //Получает user избазы данных
+        model.addAttribute("username",user.getUsername());
+        model.addAttribute("email",user.getEmail());
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String updateProfile(
+            @AuthenticationPrincipal User user,
+            @RequestParam String password,
+            @RequestParam String email
+    ){
+        userService.updateProfile(user,password,email);
+
+        return "redirect:/user/profile";
     }
 
 }
