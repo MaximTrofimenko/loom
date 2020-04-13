@@ -10,8 +10,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     show-sql: true
     hibernate:
-     ddl-auto: create
-    generate-ddl: true
+     ddl-auto: validate
+    generate-ddl: false
 
   freemarker:
     expose-request-attributes: true
