@@ -14,7 +14,8 @@ public class Message {
     @NotBlank(message = "Please fill the message!")
     @Length(max = 2084,message = "Message too long")
     private String text;
-
+    @NotBlank(message = "Please fill the tag!")
+    @Length(max = 255,message = "Tag too long")
     private String tag;
 
     private String filename;

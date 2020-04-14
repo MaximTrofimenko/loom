@@ -70,6 +70,7 @@ public class MainController {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
 
             model.mergeAttributes(errorsMap);
+            model.addAttribute("message",message);
         }else {
         /*
         загрузка файла
