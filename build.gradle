@@ -29,7 +29,10 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '2.2.6.RELEASE'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.6.RELEASE'
 
+	compile group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.2.2.RELEASE'
 	compileOnly 'org.flywaydb:flyway-core'
+
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
