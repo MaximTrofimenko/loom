@@ -29,4 +29,5 @@ mail:
 upload:
   path: "D:\\4"
 
-
+recaptcha:
+  secret: 6LfkuukUAAAAAOI_Y4j6cSZbI49HCLB11UC-CcHV
