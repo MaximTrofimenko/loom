@@ -27,6 +27,7 @@ public class Message {
 
     public Message() {
     }
+
     public Message(String text,String tag,User user){
         this.text = text;
         this.tag = tag;
