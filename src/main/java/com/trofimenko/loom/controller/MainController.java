@@ -120,25 +120,27 @@ public class MainController {
     }
 
     @PostMapping("/user-messages/{user}")
-public String updateMessage(
+    public String updateMessage(
             @AuthenticationPrincipal User currentUser,
             @PathVariable Long user,
             @RequestParam("id") Message message,
             @RequestParam("text") String text,
             @RequestParam("tag") String tag,
-            @RequestParam("file")MultipartFile file
-
+            @RequestParam("file") MultipartFile file
     ) throws IOException {
-        if (message.getAuthor().equals(currentUser)){
-            if (!StringUtils.isEmpty(text)){
+        if (message.getAuthor().equals(currentUser)) {
+            if (!StringUtils.isEmpty(text)) {
                 message.setText(text);
             }
-            if (!StringUtils.isEmpty(tag)){
+
+            if (!StringUtils.isEmpty(tag)) {
                 message.setTag(tag);
             }
+
+            saveFile(message, file);
+
+            messageRepository.save(message);
         }
-        saveFile(message, file);
-        messageRepository.save(message);
 
         return "redirect:/user-messages/" + user;
     }
