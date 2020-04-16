@@ -128,6 +128,11 @@ public class MainController {
             @RequestParam("tag") String tag,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
+
+        /*
+        при загрузке представление My messages не отображать кнопку Message editor вообще.
+        приходит пустое сообщение так как нового еще нет в базе
+         */
         if (message.getAuthor().equals(currentUser)) {
             if (!StringUtils.isEmpty(text)) {
                 message.setText(text);
