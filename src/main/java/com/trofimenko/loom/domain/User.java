@@ -169,11 +169,11 @@ public class User implements UserDetails {
         this.subscribers = subscribers;
     }
 
-    public Set<User> getSubscribtions() {
+    public Set<User> getSubscriptions() {
         return subscriptions;
     }
 
-    public void setSubscribtions(Set<User> subscribtions) {
-        this.subscriptions = subscribtions;
+    public void setSubscriptions(Set<User> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }
