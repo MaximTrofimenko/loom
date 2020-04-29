@@ -32,7 +32,7 @@ mail:
   debug: true
 
 upload:
-  path: "D:\\4"
+  path: "C:\\1"
 
 recaptcha:
   secret: 6LfkuukUAAAAAOI_Y4j6cSZbI49HCLB11UC-CcHV
