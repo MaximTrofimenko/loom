@@ -41,18 +41,18 @@ public class User implements UserDetails {
     @ManyToMany
     @JoinTable(
             name = "user_subscriptions",
-            joinColumns = {@JoinColumn(name = "chanel_id")},
-            inverseJoinColumns = {@JoinColumn(name = "subscriber_id")}
+            joinColumns = { @JoinColumn(name = "channel_id") },
+            inverseJoinColumns = { @JoinColumn(name = "subscriber_id") }
     )
     private Set<User> subscribers = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
             name = "user_subscriptions",
-            joinColumns = {@JoinColumn(name = "subscriber_id")},
-            inverseJoinColumns = {@JoinColumn(name = "chanel_id")}
+            joinColumns = { @JoinColumn(name = "subscriber_id") },
+            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
     )
-    private Set<User> subscribtions = new HashSet<>();
+    private Set<User> subscriptions = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -170,10 +170,10 @@ public class User implements UserDetails {
     }
 
     public Set<User> getSubscribtions() {
-        return subscribtions;
+        return subscriptions;
     }
 
     public void setSubscribtions(Set<User> subscribtions) {
-        this.subscribtions = subscribtions;
+        this.subscriptions = subscribtions;
     }
 }
