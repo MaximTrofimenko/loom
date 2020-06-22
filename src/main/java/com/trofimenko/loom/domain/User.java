@@ -1,6 +1,5 @@
 package com.trofimenko.loom.domain;
 
-import javafx.concurrent.Service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
