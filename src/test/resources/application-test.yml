@@ -1,14 +1,14 @@
 spring:
 
   datasource:
-    url: jdbc:postgresql://localhost/loom
+    url: jdbc:postgresql://localhost/pizda
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    show-sql: true
+    show-sql: false
     hibernate:
      ddl-auto: validate
     generate-ddl: false

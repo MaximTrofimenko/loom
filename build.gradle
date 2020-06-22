@@ -2,7 +2,14 @@ plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
-	id "org.flywaydb.flyway" version "6.3.2"
+	id "org.flywaydb.flyway" version "6.4.4"
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost/loom'
+	user = 'postgres'
+	password = 'postgres'
+	schemas = ['public']
 }
 
 group = 'com.trofimenko'
@@ -21,25 +28,24 @@ repositories {
 }
 
 dependencies {
-	runtimeOnly 'org.postgresql:postgresql'
 
+	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.session:spring-session-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
-
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '2.2.6.RELEASE'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.6.RELEASE'
-
-	compile group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.2.2.RELEASE'
-	compileOnly 'org.flywaydb:flyway-core'
-
-
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	compile group: 'org.flywaydb', name: 'flyway-core', version: '6.4.4'
+	runtimeOnly 'org.postgresql:postgresql'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
 }
 
 test {
