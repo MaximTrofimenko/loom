@@ -3,8 +3,8 @@ package com.trofimenko.loom.servise;
 import com.trofimenko.loom.domain.Role;
 import com.trofimenko.loom.domain.User;
 import com.trofimenko.loom.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,8 +15,10 @@ import org.springframework.util.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class UserService implements UserDetailsService {
+    //private static final Logger log = Logger.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -50,7 +52,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
-
+        log.info("User save хуй");
         sendMessage(user);
         return true;
     }

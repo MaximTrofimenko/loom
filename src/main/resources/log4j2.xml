@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<Appenders>
+    <File name="FILEOUT" fileName="/home/maxim/projects/log/log-info.log">
+        <PatternLayout pattern = "%d{yyyyMMdd HH:mm:ss} %-5p [%t] %C{2} %F%L - %m%n"/>
+    </File>
+
+    <Console name="STDOUT" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+</Appenders>
+
+<Loggers>
+    <Root level="debug">
+        <AppenderRef ref="FILEOUT" level="debug"/>
+        <AppenderRef ref="STDOUT" level="info"/>
+    </Root>
+</Loggers>
+</Configuration>
