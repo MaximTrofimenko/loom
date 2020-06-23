@@ -3,6 +3,7 @@ package com.trofimenko.loom.controller;
 import com.trofimenko.loom.domain.Role;
 import com.trofimenko.loom.domain.User;
 import com.trofimenko.loom.servise.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -52,6 +54,7 @@ public class UserController {
     public String getProfile(Model model, @AuthenticationPrincipal User user){ //Получает user избазы данных
         model.addAttribute("username",user.getUsername());
         model.addAttribute("email",user.getEmail());
+
         return "profile";
     }
 
@@ -97,6 +100,7 @@ public class UserController {
 
         if ("subscriptions".equals(type)) {
             model.addAttribute("users", user.getSubscriptions());
+            log.info("Хуй с горы");
         } else {
             model.addAttribute("users", user.getSubscribers());
         }
